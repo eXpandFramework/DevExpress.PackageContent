@@ -1,7 +1,10 @@
 # About
-This repository contains files that you may find useful when DevExpress is not install and you need to download the DevExpress assemblies used to build your solution.
 
-Using the published powershell functions you can answer the question in which DevExpress nuget package can I find this assembly.
+Using the published powershell functions and this repo content:
+1. You can answer question in which DevExpress nuget package can I find my solution assemblies.
+2. Providing a packagesource for the DevExpress assemblies you can download and flatten all in a folder.
+3. Update your projects references HintPath for the DevExpress assemblies.
+4. Build the solution with success without having to install DevExpress.
 
 ## How to consume the csv files
 For example let's assume we look which packages are related to `Xpo` for the `18.2.4` version.
@@ -34,13 +37,19 @@ DevExpress.Xpo.ru.18.2.4                     DevExpress.Xpo.v18.2.resources
 DevExpress.Xpo.ru.18.2.4                     DevExpress.Xpo.v18.2.resources
 ```
 
-Having this list we can now use the `Install-DX` cmdLet from the same `XpandPosh` module we installed before.
+Having the above list we can now use the `Install-DX` cmdLet from the same `XpandPosh` module we installed before.
 
 ```ps1
 Install-DX -binPath $(Default.SystemDirectory)\Xpand.DLL -dxSources $(Get-PackageSourceLocations -join ";") -sourcePath $(Default.SystemDirectory) -dxVersion 18.2.4 
 
 ```
+The above command copies all DevExpress assemblies used from `eXpandFramework` in the `Xpand.Dll` folder.
 
+Finally we can update the `HintPath` to all project references, so we can build.
+
+```ps1
+Update-HintPath -OutputPath "c:\eXpandFramework\Xpand.Dll" -SourcesPath "c:\eXpandFramework"
+```
 
 ## How to create a content file.
 Open a powershell command prompt and type the next commands.
