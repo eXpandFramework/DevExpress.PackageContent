@@ -34,6 +34,12 @@ DevExpress.Xpo.ru.18.2.4                     DevExpress.Xpo.v18.2.resources
 DevExpress.Xpo.ru.18.2.4                     DevExpress.Xpo.v18.2.resources
 ```
 
+Having this list we can now use the `Install-DX` cmdLet from the same `XpandPosh` module we installed before.
+
+```ps1
+Install-DX -binPath $(Default.SystemDirectory)\Xpand.DLL -dxSources $(Get-PackageSourceLocations -join ";") -sourcePath $(Default.SystemDirectory) -dxVersion 18.2.4 
+
+```
 
 
 ## How to create a content file.
@@ -41,7 +47,7 @@ Open a powershell command prompt and type the next commands.
 
 ```ps1
 Install-Module XpandPosh
-Get-NugetPackageAssembly -sourcePath "C:\Work\eXpandFramework\expand" -nupkgPath $sources|Export-Csv 18.2.4.csv
+Get-NugetPackageAssembly "C:\Program Files (x86)\DevExpress 18.2\Components\System\Components\Packages"|Export-Csv 18.2.4.csv
 Install
 ```
 
