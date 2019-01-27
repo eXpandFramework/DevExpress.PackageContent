@@ -5,11 +5,16 @@ Using the published powershell functions and this repo content:
 2. Providing a packagesource for the DevExpress assemblies you can download and flatten all in a folder.
 3. Update your projects references HintPath for the DevExpress assemblies.
 4. Build the solution with success without having to install DevExpress.
+## Prerequisites
+Install `XpandPosh` from `PSGallery`
 
+```ps1
+Install-Module XpandPosh
+```
 ## How to consume the csv files
 For example let's assume we look which packages are related to `Xpo` for the `18.2.4` version.
 ```ps1
-(new-object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/eXpandFramework/DevExpress.PackageContent/master/Contents/18.2.4.csv")|ConvertFrom-csv|Where{$_.Name -like "*xpo*"}
+Get-DxNugets|Where{$_.Name -like "*xpo*"}
 ```
 the above outputs:
 ```
@@ -60,6 +65,6 @@ Get-NugetPackageAssembly "C:\Program Files (x86)\DevExpress 18.2\Components\Syst
 Install
 ```
 
-The above script will create a csv file that contains all packages used `eXpandFramework`.
+The above script will create a csv file that contains all packages used in `eXpandFramework`.
 
 PR are welcome if you generated unlisted data. 
