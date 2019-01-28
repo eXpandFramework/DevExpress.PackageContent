@@ -5,8 +5,10 @@ Using the published powershell functions and this repo content:
 2. Providing a packagesource for the DevExpress assemblies you can download and flatten all in a folder.
 3. Update your projects references HintPath for the DevExpress assemblies.
 4. Build the solution with success without having to install DevExpress.
+
+The repository data are used to build `eXpandFramework` so this `ReadMe` examples are from there. However you can use them similarly with any other `non-eXpandFrameowork` solution.
 ## Prerequisites
-Install `XpandPosh` from `PSGallery`
+Install [XpandPosh](https://www.powershellgallery.com/packages/XpandPosh/) from [PSGallery](https://www.powershellgallery.com/)
 
 ```ps1
 Install-Module XpandPosh
@@ -20,31 +22,26 @@ the above outputs:
 ```
 Package                               Version Assembly
 -------                               ------- --------
-DevExpress.ExpressApp.Security.Xpo    18.2.4  DevExpress.ExpressApp.Security.Xpo.v18.2
-DevExpress.ExpressApp.Security.Xpo.de 18.2.4  DevExpress.ExpressApp.Security.Xpo.v18.2.resources
-DevExpress.ExpressApp.Security.Xpo.es 18.2.4  DevExpress.ExpressApp.Security.Xpo.v18.2.resources
-DevExpress.ExpressApp.Security.Xpo.ja 18.2.4  DevExpress.ExpressApp.Security.Xpo.v18.2.resources
-DevExpress.ExpressApp.Security.Xpo.ru 18.2.4  DevExpress.ExpressApp.Security.Xpo.v18.2.resources
-DevExpress.ExpressApp.Xpo             18.2.4  DevExpress.ExpressApp.Xpo.v18.2
-DevExpress.RichEdit.Export            18.2.4  DevExpress.RichEdit.v18.2.Export
-DevExpress.RichEdit.Export            18.2.4  DevExpress.RichEdit.v18.2.Export
-DevExpress.Xpo                        18.2.4  DevExpress.Xpo.v18.2
-DevExpress.Xpo                        18.2.4  DevExpress.Xpo.v18.2
-DevExpress.Xpo.de                     18.2.4  DevExpress.Xpo.v18.2.resources
-DevExpress.Xpo.de                     18.2.4  DevExpress.Xpo.v18.2.resources
-DevExpress.Xpo.es                     18.2.4  DevExpress.Xpo.v18.2.resources
-DevExpress.Xpo.es                     18.2.4  DevExpress.Xpo.v18.2.resources
-DevExpress.Xpo.Extensions             18.2.4  DevExpress.Xpo.v18.2.Extensions
-DevExpress.Xpo.ja                     18.2.4  DevExpress.Xpo.v18.2.resources
-DevExpress.Xpo.ja                     18.2.4  DevExpress.Xpo.v18.2.resources
-DevExpress.Xpo.ru                     18.2.4  DevExpress.Xpo.v18.2.resources
-DevExpress.Xpo.ru                     18.2.4  DevExpress.Xpo.v18.2.resources
+DevExpress.ExpressApp.Security.Xpo.ja 18.2.5  DevExpress.ExpressApp.Security.Xpo.v18.2.resources
+DevExpress.ExpressApp.Security.Xpo.ru 18.2.5  DevExpress.ExpressApp.Security.Xpo.v18.2.resources
+DevExpress.ExpressApp.Security.Xpo    18.2.5  DevExpress.ExpressApp.Security.Xpo.v18.2
+DevExpress.ExpressApp.Security.Xpo.de 18.2.5  DevExpress.ExpressApp.Security.Xpo.v18.2.resources
+DevExpress.ExpressApp.Xpo             18.2.5  DevExpress.ExpressApp.Xpo.v18.2
+DevExpress.RichEdit.Export            18.2.5  DevExpress.RichEdit.v18.2.Export
+DevExpress.Xpo.es                     18.2.5  DevExpress.Xpo.v18.2.resources
+DevExpress.Xpo.de                     18.2.5  DevExpress.Xpo.v18.2.resources
+DevExpress.Xpo.es                     18.2.5  DevExpress.Xpo.v18.2.resources
+DevExpress.Xpo.Extensions             18.2.5  DevExpress.Xpo.v18.2.Extensions
+DevExpress.Xpo.ru                     18.2.5  DevExpress.Xpo.v18.2.resources
+DevExpress.Xpo                        18.2.5  DevExpress.Xpo.v18.2
+DevExpress.Xpo.ja                     18.2.5  DevExpress.Xpo.v18.2.resources
 ```
 
 Having the above list we can now use the `Install-DX` cmdLet from the same `XpandPosh` module we installed before.
 
 ```ps1
-Install-DX -binPath $(Default.SystemDirectory)\Xpand.DLL -dxSources $(Get-PackageSourceLocations -join ";") -sourcePath $(Default.SystemDirectory) -dxVersion 18.2.4 
+Register-PackageSource –ProviderName Nuget –Name DX_private –Location https://nuget.devexpress.com/YOURTOKEN
+Install-DX -binPath $(Default.SystemDirectory)\Xpand.DLL -dxSources $(Get-PackageSourceLocations -join ";") -sourcePath $(Default.SystemDirectory) -dxVersion 18.2.5 
 
 ```
 The above command copies all DevExpress assemblies used from `eXpandFramework` in the `Xpand.Dll` folder.
@@ -60,10 +57,10 @@ Open a powershell command prompt and type the next commands.
 
 ```ps1
 Install-Module XpandPosh
-Get-NugetPackageAssembly "C:\Program Files (x86)\DevExpress 18.2\Components\System\Components\Packages"|Export-Csv 18.2.4.csv
-Install
+Get-NugetPackageAssembly "C:\Program Files (x86)\DevExpress 18.2\Components\System\Components\Packages"|Export-Csv 18.2.5.csv
 ```
 
 The above script will create a csv file that contains all packages used in `eXpandFramework`.
 
 PR are welcome if you generated unlisted data. 
+
