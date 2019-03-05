@@ -1,12 +1,10 @@
+[![Build Status](https://dev.azure.com/eXpandDevOps/eXpandFramework/_apis/build/status/Populate-DevExpress-Packages-Contents?branchName=master)](https://dev.azure.com/eXpandDevOps/eXpandFramework/_build/latest?definitionId=36&branchName=master)
 # About
 
-Using the published powershell functions and this repo content:
-1. You can answer question in which DevExpress nuget package can I find my solution assemblies.
-2. Providing a packagesource for the DevExpress assemblies you can download and flatten all in a folder.
-3. Update your projects references HintPath for the DevExpress assemblies.
-4. Build the solution with success without having to install DevExpress.
+In this repository you can find an `index` of all DevExpress Nuget packages assemblies in the form of `csv` files. The [Populate-DevExpress-Packages-Contents](https://github.com/eXpandFramework/Azure-Tasks/blob/master/Populate-DevExpress-Packages-Contents.yml) pipeline runs daily indexing any new packages found. The csv file is then commited to this repo and a release is tagged. 
 
-The repository data are used to build `eXpandFramework` so this `ReadMe` examples are from there. However you can use them similarly with any other `non-eXpandFrameowork` solution.
+Subscribe to Github release notifications to get notified the day a new DevExpress nuget packaged is in your nuget feed.
+
 ## Prerequisites
 Install [XpandPosh](https://www.powershellgallery.com/packages/XpandPosh/) from [PSGallery](https://www.powershellgallery.com/)
 
@@ -51,16 +49,4 @@ Finally we can update the `HintPath` to all project references, so we can build.
 ```ps1
 Update-HintPath -OutputPath "c:\eXpandFramework\Xpand.Dll" -SourcesPath "c:\eXpandFramework"
 ```
-
-## How to create a content file.
-Open a powershell command prompt and type the next commands.
-
-```ps1
-Install-Module XpandPosh
-Get-NugetPackageAssembly "C:\Program Files (x86)\DevExpress 18.2\Components\System\Components\Packages"|Export-Csv 18.2.5.csv
-```
-
-The above script will create a csv file that contains all packages used in `eXpandFramework`.
-
-PR are welcome if you generated unlisted data. 
 
