@@ -1,0 +1,4 @@
+"Package","Version","Assembly","DotNetFramework"
+"devextreme.aspnet.mvc","17.1.7","DevExtreme.AspNet.Mvc.dll",".NETFramework,Version=v4.0"
+"devextreme.aspnet.core","17.1.7","DevExtreme.AspNet.Core.dll",".NETFramework,Version=v4.5.1"
+"devextreme.aspnet.core","17.1.7","DevExtreme.AspNet.Core.dll",".NETStandard,Version=v1.6"
